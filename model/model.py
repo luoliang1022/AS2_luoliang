@@ -163,7 +163,7 @@ class Transformer(nn.Module):
         #if (epoch == int(self.config.max_epochs/3)) or (epoch == int(2*self.config.max_epochs/3)):
         #   self.reduce_lr()
         #for idx in range(0, 16000, 32):
-        for idx in range(0,9600,32):
+        for idx in range(0,53417,32):
         #for i, batch in enumerate(train_iterator):
             #print(i)
             #print(batch)
