@@ -25,7 +25,6 @@ class Transformer(nn.Module):
         positioncross = PositionalEncoding(d_model*2, dropout)
         '''
         self.encoder = Encoder(EncoderLayer(config.d_model, deepcopy(attn), deepcopy(ff), dropout), N)
-
         # Fully-Connected Layer
         self.fc = nn.Linear(
             self.config.d_model,
@@ -81,7 +80,7 @@ class Transformer(nn.Module):
         #if (epoch == int(self.config.max_epochs/3)) or (epoch == int(2*self.config.max_epochs/3)):
         #   self.reduce_lr()
 
-        for idx in range(0,16000,32):
+        for idx in range(0,53417,32):
             self.optimizer.zero_grad()
 
             y = return_label(idx,"train")
