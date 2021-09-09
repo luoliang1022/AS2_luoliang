@@ -45,12 +45,14 @@ class Transformer(nn.Module):
 
         encoded_sents1 = self.encoder(embedded_sents1, embedded_sents1)
         encoded_sents2 = self.encoder(embedded_sents2, embedded_sents2)
-
+        #print(encoded_sents1.size())
+        #print(encoded_sents2.size())
 
 
         final_feature_map1 = torch.mean(encoded_sents1, 1)
         final_feature_map2 = torch.mean(encoded_sents2, 1)
-
+        #print(final_feature_map1.size())
+        #print(final_feature_map2.size())
 
 
 
