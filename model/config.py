@@ -32,9 +32,9 @@ class Config(object):
 
     data = "trecr"
     dataraw = "D:/2021/AS2experiment/AS2/model_Transformer/dataSetRaw/TRECR/"
-    trainpath = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/train/"
-    validpath = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/valid/"
-    testpath = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/test/"
+    trainpath = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/trainfixed/"
+    validpath = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/validfixed/"
+    testpath = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/testfixed/"
 
     #emb = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/"
 

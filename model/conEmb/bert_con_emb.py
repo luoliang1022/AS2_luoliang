@@ -45,17 +45,17 @@ class bert_con_emb:
     #j = 0
     for i in range(0, datanum, 32):
       temp = []
-      lenn = 0
+      lenn = 15
       for j in range(0, 32):
         if (i + j >= datanum):
           continue
         result = self.ce.contextualizedEmbedding(str1[i + j])
         temp.append(result)
-        lenr = int((result.size) / d_model)
-        lenn = max(lenn, lenr)
-      print("第" + str(i / 32) + "组长度最长为：" + str(lenn))
-      if (lenn > 20):
-        lenn = 20
+        #lenr = int((result.size) / d_model)
+        #lenn = max(lenn, lenr)
+      #print("第" + str(i / 32) + "组长度最长为：" + str(lenn))
+      #if (lenn > 20):
+        #lenn = 20
       print("第" + str(i / 32) + "组bitch_size为" + str(len(temp)))
       for j in range(0, len(temp)):
         res = temp[j]
@@ -80,20 +80,20 @@ class bert_con_emb:
     hf1.close()
   def write_a(self,datanum,str2,hf2):
     d_model = 768
-    j = 0
+    #j = 0
     for i in range(0, datanum, 32):
       temp = []
-      lenn = 0
+      lenn = 50
       for j in range(0, 32):
         if (i + j >= datanum):
           continue
         result = self.ce.contextualizedEmbedding(str2[i + j])
         temp.append(result)
-        lenr = int((result.size) / d_model)
-        lenn = max(lenn, lenr)
-      print("第" + str(i / 32) + "组长度最长为：" + str(lenn))
-      if (lenn > 50):
-        lenn = 50
+        #lenr = int((result.size) / d_model)
+        #lenn = max(lenn, lenr)
+      #print("第" + str(i / 32) + "组长度最长为：" + str(lenn))
+      #if (lenn > 50):
+        #lenn = 50
       print("第" + str(i / 32) + "组bitch_size为" + str(len(temp)))
       for j in range(0, len(temp)):
         res = temp[j]
@@ -137,45 +137,40 @@ class bert_con_emb:
       '''
       print("======================")
     hf3.close()
-
-'''
-import sys
-from google.colab import drive
-drive.mount('/content/drive')
-sys.path.append('/content/drive/MyDrive/luoliang/CETEFeature_Based/Model_Transformer/GenerateContextualizedEmbeddings')
-'''
 #!pip install git+https://github.com/huggingface/transformers
 
 
 
 if __name__=='__main__':
-  file = "D:/2021/AS2experiment/AS2/model_Transformer/dataSetRaw/TRECR/trecr_train.tsv"
-  #valid_file = "/content/drive/MyDrive/luoliang/CETEFeature_Based/Model_Transformer/CETE Dataset/data/trecr_test.tsv"
-  #valid_file = "/content/drive/MyDrive/luoliang/CETEFeature_Based/Model_Transformer/CETE Dataset/data/trecr_valid.tsv"
+  #file = "D:/2021/AS2experiment/AS2/model_Transformer/dataSetRaw/TRECR/trecr_train.tsv"
+  #file = "D:/2021/AS2experiment/AS2/model_Transformer/dataSetRaw/TRECR/trecr_valid.tsv"
+  file = "D:/2021/AS2experiment/AS2/model_Transformer/dataSetRaw/TRECR/trecr_test.tsv"
 
 
-  path = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/train/"
-  #path = "/content/drive/MyDrive/luoliang/CETEFeature_Based/Model_Transformer/emb/trecr_valid/"
-  #path = "/content/drive/MyDrive/luoliang/CETEFeature_Based/Model_Transformer/emb/trecr_test/"
+  #path = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/trainfixed/"
+  #path = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/validfixed/"
+  path = "D:/2021/AS2experiment/AS2/model_Transformer/dataSet/testfixed/"
 
-  #fileq = "trecrtrain_q.h5"
-  #filea = "trecrtrain_aa.h5"
+
+  '''
+  fileq = "trecrtrain_q.h5"
+  filea = "trecrtrain_a.h5"
   filelab = "trecrtrain_label.h5"
   '''
-
+  '''
   fileq = "trecrvalid_q.h5"
   filea = "trecrvalid_a.h5"
   filelab = "trecrvalid_label.h5"
+  '''
 
-  '''
-  '''
+
   fileq = "trecrtest_q.h5"
   filea = "trecrtest_a.h5"
   filelab = "trecrtest_label.h5"
-  '''
-  #hf1 = h5py.File(path+fileq,'w')
 
-  #hf2 = h5py.File(path+filea,'w')
+  hf1 = h5py.File(path+fileq,'w')
+
+  hf2 = h5py.File(path+filea,'w')
 
   hf3 = h5py.File(path+filelab,'w')
 
@@ -186,7 +181,8 @@ if __name__=='__main__':
   datanum,resx,str1,str2 = b_c_e.deal_data()
   print(datanum)
   print(len(str1))
-  #b_c_e.write_q(datanum, str1, hf1)
-  #b_c_e.write_a(datanum,str2,hf2)
+  print(len(str2))
+  b_c_e.write_q(datanum, str1, hf1)
+  b_c_e.write_a(datanum,str2,hf2)
   b_c_e.write_label(datanum,resx,hf3)
 
